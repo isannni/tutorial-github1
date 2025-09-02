@@ -3,107 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Sederhana</title>
+    <title>Dashboard Modern</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         /* CSS untuk styling dasar */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background-color: #f4f4f9;
-            color: #333;
+        :root {
+            --primary-color: #5d5dff;
+            --secondary-color: #34495e;
+            --background-color: #f0f4f8;
+            --card-background: #ffffff;
+            --text-color: #333333;
+            --subtle-text-color: #777777;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --border-radius: 12px;
         }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
         .container {
             display: flex;
             min-height: 100vh;
         }
+        
+        /* Sidebar dengan desain lebih modern */
         .sidebar {
             width: 250px;
-            background-color: #2c3e50;
+            background-color: var(--secondary-color);
             color: #ecf0f1;
             padding: 20px;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            box-shadow: 2px 0 10px rgba(0,0,0,0.15);
             position: fixed;
             height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         .sidebar h2 {
-            text-align: center;
-            margin-bottom: 30px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: white;
+            letter-spacing: 1px;
+        }
+        .sidebar nav {
+            width: 100%;
         }
         .sidebar a {
-            display: block;
-            padding: 15px;
+            display: flex;
+            align-items: center;
+            padding: 15px 25px;
             text-decoration: none;
             color: #ecf0f1;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            border-radius: var(--border-radius);
+            transition: background-color 0.3s, transform 0.2s;
+            margin-bottom: 10px;
+        }
+        .sidebar a i {
+            margin-right: 15px;
+            font-size: 1.2em;
         }
         .sidebar a:hover, .sidebar a.active {
-            background-color: #34495e;
+            background-color: #4a6681;
+            transform: translateY(-2px);
         }
         .main-content {
             flex-grow: 1;
-            padding: 20px;
+            padding: 30px;
             margin-left: 250px;
         }
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-weight: 600;
+            color: var(--secondary-color);
         }
         .cards-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
         }
         .card {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            text-align: center;
+            background-color: var(--card-background);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: left;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
         }
         .card h3 {
             margin-top: 0;
-            color: #2c3e50;
+            font-size: 1.1em;
+            color: var(--subtle-text-color);
         }
         .card p {
-            font-size: 2em;
-            margin: 10px 0 0;
-            font-weight: bold;
+            font-size: 2.2em;
+            margin: 5px 0 0;
+            font-weight: 700;
+            color: var(--primary-color);
         }
         .content-section {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            margin-top: 20px;
+            background-color: var(--card-background);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-top: 25px;
+        }
+        .content-section h2 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            font-weight: 600;
         }
         /* CSS untuk tabel data */
-        .data-table {
-            margin-top: 20px;
-        }
         .data-table table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 15px;
         }
         .data-table th, .data-table td {
-            border: 1px solid #ddd;
+            border: 1px solid #e0e0e0;
             padding: 12px;
             text-align: left;
         }
         .data-table th {
-            background-color: #f2f2f2;
-            font-weight: bold;
+            background-color: #f8f8f8;
+            font-weight: 600;
+            color: var(--secondary-color);
         }
         .data-table tbody tr:nth-child(even) {
-            background-color: #f9f9f9;
+            background-color: #fdfdfd;
         }
         /* CSS untuk daftar laporan */
-        .report-list {
-            margin-top: 20px;
-        }
         .report-list ul {
             list-style-type: none;
             padding: 0;
@@ -112,44 +152,58 @@
             background-color: #f9f9f9;
             padding: 15px;
             margin-bottom: 10px;
-            border-radius: 5px;
-            border-left: 5px solid #3498db;
+            border-radius: var(--border-radius);
+            border-left: 5px solid var(--primary-color);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: transform 0.2s;
+        }
+        .report-list li:hover {
+            transform: translateX(5px);
         }
         .report-list li .report-meta {
-            color: #777;
+            color: var(--subtle-text-color);
             font-size: 0.9em;
+        }
+        .download-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .download-link:hover {
+            text-decoration: underline;
         }
         /* CSS untuk formulir pengaturan */
         .settings-form label {
             display: block;
             margin-bottom: 8px;
-            font-weight: bold;
+            font-weight: 600;
+            color: var(--secondary-color);
         }
         .settings-form input[type="text"],
         .settings-form input[type="email"],
         .settings-form textarea {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box; /* Agar padding tidak menambah lebar */
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
         .settings-form button {
-            background-color: #3498db;
+            background-color: var(--primary-color);
             color: white;
-            padding: 12px 20px;
+            padding: 12px 25px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 1em;
             transition: background-color 0.3s;
         }
         .settings-form button:hover {
-            background-color: #2980b9;
+            background-color: #4a4ade;
         }
     </style>
 </head>
@@ -159,10 +213,18 @@
         <div class="sidebar">
             <h2>Dashboard</h2>
             <nav>
-                <a href="#" id="beranda-link" class="active">Beranda</a>
-                <a href="#" id="analisis-link">Analisis</a>
-                <a href="#" id="laporan-link">Laporan</a>
-                <a href="#" id="pengaturan-link">Pengaturan</a>
+                <a href="#" id="beranda-link" class="active">
+                    <i class="fas fa-home"></i> Beranda
+                </a>
+                <a href="#" id="analisis-link">
+                    <i class="fas fa-chart-line"></i> Analisis
+                </a>
+                <a href="#" id="laporan-link">
+                    <i class="fas fa-file-alt"></i> Laporan
+                </a>
+                <a href="#" id="pengaturan-link">
+                    <i class="fas fa-cog"></i> Pengaturan
+                </a>
             </nav>
         </div>
 
@@ -278,10 +340,8 @@
                     <form class="settings-form">
                         <label for="username">Nama Pengguna:</label>
                         <input type="text" id="username" name="username" value="Admin" required>
-
                         <label for="email">Email:</label>
                         <input type="email" id="email" name="email" value="admin@contoh.com" required>
-
                         <label for="notifications">Preferensi Notifikasi:</label>
                         <div>
                             <input type="checkbox" id="email-notif" name="notifications" value="email" checked>
@@ -291,7 +351,6 @@
                             <input type="checkbox" id="push-notif" name="notifications" value="push">
                             <label for="push-notif">Notifikasi Push</label>
                         </div>
-
                         <button type="submit">Simpan Perubahan</button>
                     </form>
                 </div>
@@ -314,13 +373,11 @@
             
             const pageTitle = document.getElementById('page-title');
 
-            // Fungsi untuk menampilkan konten berdasarkan ID
             function showPage(pageId) {
                 const allPages = document.querySelectorAll('.page-content');
                 allPages.forEach(page => {
                     page.style.display = 'none';
                 });
-                
                 document.getElementById(pageId).style.display = 'block';
 
                 const allLinks = document.querySelectorAll('.sidebar a');
@@ -329,7 +386,6 @@
                 });
             }
 
-            // Event listener untuk link Beranda
             berandaLink.addEventListener('click', function(event) {
                 event.preventDefault();
                 showPage('beranda-content');
@@ -337,7 +393,6 @@
                 pageTitle.textContent = "Selamat Datang di Dashboard";
             });
 
-            // Event listener untuk link Analisis
             analisisLink.addEventListener('click', function(event) {
                 event.preventDefault();
                 showPage('analisis-content');
@@ -345,7 +400,6 @@
                 pageTitle.textContent = "Analisis Data";
             });
 
-            // Event listener untuk link Laporan
             laporanLink.addEventListener('click', function(event) {
                 event.preventDefault();
                 showPage('laporan-content');
@@ -353,7 +407,6 @@
                 pageTitle.textContent = "Laporan & Dokumen";
             });
 
-            // Event listener untuk link Pengaturan
             pengaturanLink.addEventListener('click', function(event) {
                 event.preventDefault();
                 showPage('pengaturan-content');
