@@ -122,6 +122,35 @@
             color: #777;
             font-size: 0.9em;
         }
+        /* CSS untuk formulir pengaturan */
+        .settings-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        .settings-form input[type="text"],
+        .settings-form input[type="email"],
+        .settings-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; /* Agar padding tidak menambah lebar */
+        }
+        .settings-form button {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+        .settings-form button:hover {
+            background-color: #2980b9;
+        }
     </style>
 </head>
 <body>
@@ -133,7 +162,7 @@
                 <a href="#" id="beranda-link" class="active">Beranda</a>
                 <a href="#" id="analisis-link">Analisis</a>
                 <a href="#" id="laporan-link">Laporan</a>
-                <a href="#">Pengaturan</a>
+                <a href="#" id="pengaturan-link">Pengaturan</a>
             </nav>
         </div>
 
@@ -233,19 +262,38 @@
                                 </div>
                                 <a href="#" class="download-link">Unduh</a>
                             </li>
-                            <li>
-                                <div>
-                                    <h4>Ringkasan Keuangan Bulanan Februari</h4>
-                                    <span class="report-meta">Dibuat: 2025-02-28 | Format: PDF</span>
-                                </div>
-                                <a href="#" class="download-link">Unduh</a>
-                            </li>
                         </ul>
                     </div>
                 </div>
                 <div class="content-section" style="margin-top: 20px;">
                     <h2>Buat Laporan Baru</h2>
                     <p>Di sini Anda bisa menambahkan formulir untuk membuat laporan baru.</p>
+                </div>
+            </div>
+
+            <div id="pengaturan-content" class="page-content" style="display: none;">
+                <div class="content-section">
+                    <h2>Pengaturan Akun</h2>
+                    <p>Kelola profil dan preferensi notifikasi Anda.</p>
+                    <form class="settings-form">
+                        <label for="username">Nama Pengguna:</label>
+                        <input type="text" id="username" name="username" value="Admin" required>
+
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" value="admin@contoh.com" required>
+
+                        <label for="notifications">Preferensi Notifikasi:</label>
+                        <div>
+                            <input type="checkbox" id="email-notif" name="notifications" value="email" checked>
+                            <label for="email-notif">Notifikasi Email</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="push-notif" name="notifications" value="push">
+                            <label for="push-notif">Notifikasi Push</label>
+                        </div>
+
+                        <button type="submit">Simpan Perubahan</button>
+                    </form>
                 </div>
             </div>
 
@@ -257,10 +305,12 @@
             const berandaLink = document.getElementById('beranda-link');
             const analisisLink = document.getElementById('analisis-link');
             const laporanLink = document.getElementById('laporan-link');
+            const pengaturanLink = document.getElementById('pengaturan-link');
             
             const berandaContent = document.getElementById('beranda-content');
             const analisisContent = document.getElementById('analisis-content');
             const laporanContent = document.getElementById('laporan-content');
+            const pengaturanContent = document.getElementById('pengaturan-content');
             
             const pageTitle = document.getElementById('page-title');
 
@@ -301,6 +351,14 @@
                 showPage('laporan-content');
                 laporanLink.classList.add('active');
                 pageTitle.textContent = "Laporan & Dokumen";
+            });
+
+            // Event listener untuk link Pengaturan
+            pengaturanLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                showPage('pengaturan-content');
+                pengaturanLink.classList.add('active');
+                pageTitle.textContent = "Pengaturan Akun";
             });
         });
     </script>
