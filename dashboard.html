@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Sederhana</title>
+    <style>
+        /* CSS untuk styling dasar */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .sidebar a {
+            display: block;
+            padding: 15px;
+            text-decoration: none;
+            color: #ecf0f1;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .sidebar a:hover, .sidebar a.active {
+            background-color: #34495e;
+        }
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .card h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        .card p {
+            font-size: 2em;
+            margin: 10px 0 0;
+            font-weight: bold;
+        }
+        .chart-section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="sidebar">
+            <h2>Dashboard</h2>
+            <nav>
+                <a href="#" class="active">Beranda</a>
+                <a href="#">Analisis</a>
+                <a href="#">Laporan</a>
+                <a href="#">Pengaturan</a>
+            </nav>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>Selamat Datang di Dashboard</h1>
+                <p>Pengguna: Admin</p>
+            </div>
+            
+            <div class="cards-container">
+                <div class="card">
+                    <h3>Total Penjualan</h3>
+                    <p>Rp 5.250.000</p>
+                </div>
+                <div class="card">
+                    <h3>Pengguna Baru</h3>
+                    <p>125</p>
+                </div>
+                <div class="card">
+                    <h3>Produk Terjual</h3>
+                    <p>875</p>
+                </div>
+                <div class="card">
+                    <h3>Kunjungan Situs</h3>
+                    <p>15.430</p>
+                </div>
+            </div>
+
+            <div class="chart-section">
+                <h2>Grafik Data</h2>
+                <p>Placeholder untuk grafik. Anda dapat menambahkan library JavaScript untuk menampilkan grafik di sini.</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
