@@ -22,7 +22,7 @@
             color: #ecf0f1;
             padding: 20px;
             box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-            position: fixed; /* Membuat sidebar tetap di tempat */
+            position: fixed;
             height: 100%;
         }
         .sidebar h2 {
@@ -43,7 +43,7 @@
         .main-content {
             flex-grow: 1;
             padding: 20px;
-            margin-left: 250px; /* Memberikan ruang untuk sidebar */
+            margin-left: 250px;
         }
         .header {
             display: flex;
@@ -100,6 +100,28 @@
         .data-table tbody tr:nth-child(even) {
             background-color: #f9f9f9;
         }
+        /* CSS untuk daftar laporan */
+        .report-list {
+            margin-top: 20px;
+        }
+        .report-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .report-list li {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border-left: 5px solid #3498db;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .report-list li .report-meta {
+            color: #777;
+            font-size: 0.9em;
+        }
     </style>
 </head>
 <body>
@@ -110,7 +132,7 @@
             <nav>
                 <a href="#" id="beranda-link" class="active">Beranda</a>
                 <a href="#" id="analisis-link">Analisis</a>
-                <a href="#">Laporan</a>
+                <a href="#" id="laporan-link">Laporan</a>
                 <a href="#">Pengaturan</a>
             </nav>
         </div>
@@ -140,7 +162,6 @@
                         <p>15.430</p>
                     </div>
                 </div>
-
                 <div class="content-section">
                     <h2>Grafik Data</h2>
                     <p>Placeholder untuk grafik. Anda dapat menambahkan library JavaScript seperti Chart.js untuk menampilkan grafik di sini.</p>
@@ -151,7 +172,6 @@
                 <div class="content-section">
                     <h2>Analisis Data</h2>
                     <p>Analisis tren penjualan bulanan.</p>
-                    
                     <div class="data-table">
                         <h3>Data Penjualan Bulanan</h3>
                         <table>
@@ -187,10 +207,45 @@
                         </table>
                     </div>
                 </div>
-
                 <div class="content-section" style="margin-top: 20px;">
                     <h3>Grafik Tren Penjualan</h3>
                     <p>Placeholder untuk grafik batang atau garis yang menunjukkan tren penjualan.</p>
+                </div>
+            </div>
+
+            <div id="laporan-content" class="page-content" style="display: none;">
+                <div class="content-section">
+                    <h2>Laporan Terakhir</h2>
+                    <p>Daftar laporan yang telah dihasilkan.</p>
+                    <div class="report-list">
+                        <ul>
+                            <li>
+                                <div>
+                                    <h4>Laporan Penjualan Q1 2025</h4>
+                                    <span class="report-meta">Dibuat: 2025-04-01 | Format: PDF</span>
+                                </div>
+                                <a href="#" class="download-link">Unduh</a>
+                            </li>
+                            <li>
+                                <div>
+                                    <h4>Laporan Pengguna Baru Maret 2025</h4>
+                                    <span class="report-meta">Dibuat: 2025-03-31 | Format: CSV</span>
+                                </div>
+                                <a href="#" class="download-link">Unduh</a>
+                            </li>
+                            <li>
+                                <div>
+                                    <h4>Ringkasan Keuangan Bulanan Februari</h4>
+                                    <span class="report-meta">Dibuat: 2025-02-28 | Format: PDF</span>
+                                </div>
+                                <a href="#" class="download-link">Unduh</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="content-section" style="margin-top: 20px;">
+                    <h2>Buat Laporan Baru</h2>
+                    <p>Di sini Anda bisa menambahkan formulir untuk membuat laporan baru.</p>
                 </div>
             </div>
 
@@ -201,22 +256,23 @@
         document.addEventListener('DOMContentLoaded', function() {
             const berandaLink = document.getElementById('beranda-link');
             const analisisLink = document.getElementById('analisis-link');
+            const laporanLink = document.getElementById('laporan-link');
+            
             const berandaContent = document.getElementById('beranda-content');
             const analisisContent = document.getElementById('analisis-content');
+            const laporanContent = document.getElementById('laporan-content');
+            
             const pageTitle = document.getElementById('page-title');
 
             // Fungsi untuk menampilkan konten berdasarkan ID
             function showPage(pageId) {
-                // Sembunyikan semua konten
                 const allPages = document.querySelectorAll('.page-content');
                 allPages.forEach(page => {
                     page.style.display = 'none';
                 });
                 
-                // Tampilkan konten yang dipilih
                 document.getElementById(pageId).style.display = 'block';
 
-                // Hapus kelas 'active' dari semua link sidebar
                 const allLinks = document.querySelectorAll('.sidebar a');
                 allLinks.forEach(link => {
                     link.classList.remove('active');
@@ -236,7 +292,15 @@
                 event.preventDefault();
                 showPage('analisis-content');
                 analisisLink.classList.add('active');
-                pageTitle.textContent = "Analisis Data & Laporan";
+                pageTitle.textContent = "Analisis Data";
+            });
+
+            // Event listener untuk link Laporan
+            laporanLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                showPage('laporan-content');
+                laporanLink.classList.add('active');
+                pageTitle.textContent = "Laporan & Dokumen";
             });
         });
     </script>
